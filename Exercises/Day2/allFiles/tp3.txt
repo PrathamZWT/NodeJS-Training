@@ -1,0 +1,34 @@
+const http = require("http");
+const fs = require('fs');
+const url = require('url');
+const fileNameArray = require("../file");
+const fileData = require("../task3/fileContentFetch");
+
+const myServer = http.createServer((req,res)=>{
+    const myUrl = url.parse(req.url,true);
+    switch (myUrl.pathname) {
+        case "/":
+            res.end("Wellocome to the home page !");
+            break;
+        case "/list":
+            fileNameArray.forEach(file =>{
+                res.write("\n" + file);
+            })
+            res.end("thank you");
+            break;
+        case "/file":
+            const fileName = myUrl.query.name;
+            const data = fileData(fileName) 
+            console.log(typeof data);
+            res.end(data);
+            
+            break;
+        default:
+            res.end("Wellocome to the home page !");
+            break;
+    }
+}).listen(8000,()=>{
+    console.log("\n server is active");
+    
+});
+
