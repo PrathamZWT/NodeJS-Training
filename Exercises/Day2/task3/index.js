@@ -44,19 +44,27 @@ const myServer = http.createServer((req, res) => {
                 res.writeHead(404, { "Content-Type": "text/plain" });
                 let filecreateName = myUrl.query.name;
                 let content = myUrl.query.content;
+
                 const filePath = path.join(__dirname , ".." , "allFiles", filecreateName);
-                if (fs.existsSync(filePath) === true) {
-                                res.end(" File already exists!!! \n\n\n");
+                if(path.extname(filePath) !== ".txt"){
+                    res.end("Invalid extention (only .txt is allowed)");
+                    return;
+                }
+                else{
+
+                    if (fs.existsSync(filePath) === true) {
+                        res.end(" File already exists!!! \n\n\n");
                 }else{
                     fs.writeFileSync(filePath, content);
-                                   if (fs.statSync(filePath).isFile()) {
-                                    res.end("file is create successfully") ;
-                                    return;
-                                   }else {
-
-                                res.end("file not created");
-                            }
-                                }
+                    if (fs.statSync(filePath).isFile()) {
+                        res.end("file is create successfully") ;
+                        return;
+                    }else {
+                        
+                        res.end("file not created");
+                    }
+                }
+            }
                 break;
                 case "/append":
                     let appendName = myUrl.query.name;
