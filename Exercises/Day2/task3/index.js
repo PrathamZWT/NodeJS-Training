@@ -22,16 +22,17 @@ const myServer = http.createServer((req, res) => {
 
             case "/file":
                 let fileName = myUrl.query.name;
-            
+
+                
                 if (!fileName) {
                     res.writeHead(400, { "Content-Type": "text/plain" });
                     res.end("Error: Missing 'name' query parameter");
                     return;
                 }
-            
-
+                
+                
                 const data = fileData(fileName); // Synchronously fetch file data
-            
+                
                 if (data.startsWith("Error")) {
                     res.writeHead(404, { "Content-Type": "text/plain" });
                     res.end(data); // Send the error message if the file does not exist or there's a read error
@@ -41,11 +42,15 @@ const myServer = http.createServer((req, res) => {
                 }
                 break;
                 case "/create":
-                res.writeHead(404, { "Content-Type": "text/plain" });
-                let filecreateName = myUrl.query.name;
-                let content = myUrl.query.content;
-
-                const filePath = path.join(__dirname , ".." , "allFiles", filecreateName);
+                    res.writeHead(404, { "Content-Type": "text/plain" });
+                    let filecreateName = myUrl.query.name;
+                    let content = myUrl.query.content;
+                    
+                    const filePath = path.join(__dirname , ".." , "allFiles", filecreateName);
+                if(filecreateName == ""){
+                 res.end("Please Enter A file name first (eg.. /create?name=filename.txt&content=NewContent)");
+                 return;
+                }
                 if(path.extname(filePath) !== ".txt"){
                     res.end("Invalid extention (only .txt is allowed)");
                     return;

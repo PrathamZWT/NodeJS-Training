@@ -6,7 +6,9 @@ try {
     function fetchFileName() {   
         fileNameList=fs.readdirSync(filesDirPath);
         fileNameList.forEach(fileName =>{
-            fileNameArray.push(fileName);
+            if(path.extname(fileName) !== ""){
+                fileNameArray.push(fileName);
+            }
         })
     }
 } catch (error) {
