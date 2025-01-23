@@ -1,0 +1,14 @@
+
+  GET            /           1737640438624             Hello I am a GET method 
+  GET            /           1737640439900             Hello I am a GET method 
+  GET            /users/1           1737640447357             Hello I am a GET method 
+  DELETE            /users/1           1737640449177             Hello I am a DELETE method 
+  GET            /users           1737640452002             Hello I am a GET method 
+  GET            /           1737640453788             Hello I am a GET method 
+  GET            /           1737640455651             Hello I am a GET method 
+  GET            /users/1           1737641125466             Hello I am a GET method 
+  GET            /users/5           1737641133977             Hello I am a GET method 
+  GET            /users/5           1737641277046             Hello I am a GET method 
+  GET            /users/5           1737641296441             Hello I am a GET method 
+  PATCH            /users/1           1737641678956             Hello I am a PATCH method 
+  PATCH            /users/1           1737641711214             Hello I am a PATCH method 

@@ -2,8 +2,11 @@
   "name": "nodejs",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "Day2": "node ./Exercises/Day2/task3/index.js",
+    "Day3": "node ./Exercises/Day3/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,10 @@
   "homepage": "https://github.com/PrathamZWT/NodeJS-Training#readme",
   "description": "",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
     "url": "^0.11.4"
   }
 }
