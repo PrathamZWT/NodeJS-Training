@@ -1,72 +1,74 @@
 
-  GET            /           1737640438624             Hello I am a GET method 
-  GET            /           1737640439900             Hello I am a GET method 
-  GET            /users/1           1737640447357             Hello I am a GET method 
-  DELETE            /users/1           1737640449177             Hello I am a DELETE method 
-  GET            /users           1737640452002             Hello I am a GET method 
-  GET            /           1737640453788             Hello I am a GET method 
-  GET            /           1737640455651             Hello I am a GET method 
-  GET            /users/1           1737641125466             Hello I am a GET method 
-  GET            /users/5           1737641133977             Hello I am a GET method 
-  GET            /users/5           1737641277046             Hello I am a GET method 
-  GET            /users/5           1737641296441             Hello I am a GET method 
-  PATCH            /users/1           1737641678956             Hello I am a PATCH method 
-  PATCH            /users/1           1737641711214             Hello I am a PATCH method 
-  PATCH            /users/1           1737694311043             Hello I am a PATCH method 
-  PATCH            /users/5           1737694322369             Hello I am a PATCH method 
-  PATCH            /users/5           1737694397244             Hello I am a PATCH method 
-  PATCH            /users/5           1737694452324             Hello I am a PATCH method 
-  PATCH            /users/5           1737694513611             Hello I am a PATCH method 
-  PATCH            /users/5           1737694600275             Hello I am a PATCH method 
-  PATCH            /users/5           1737694665165             Hello I am a PATCH method 
-  PATCH            /users/5           1737694669587             Hello I am a PATCH method 
-  PATCH            /users/5           1737694849212             Hello I am a PATCH method 
-  PATCH            /users/5           1737696009452             Hello I am a PATCH method 
-  PATCH            /users/5           1737696039364             Hello I am a PATCH method 
-  PATCH            /users/5           1737696064288             Hello I am a PATCH method 
-  PATCH            /users/1           1737696087495             Hello I am a PATCH method 
-  PATCH            /users/5           1737696126759             Hello I am a PATCH method 
-  PATCH            /users/5           1737696156925             Hello I am a PATCH method 
-  PATCH            /users/5           1737696377398             Hello I am a PATCH method 
-  PATCH            /users/5           1737696646956             Hello I am a PATCH method 
-  PATCH            /users/5           1737696673011             Hello I am a PATCH method 
-  PATCH            /users/5           1737696692218             Hello I am a PATCH method 
-  PATCH            /users/5           1737696709757             Hello I am a PATCH method 
-  PATCH            /users/5           1737696724779             Hello I am a PATCH method 
-  PATCH            /users/5           1737696742202             Hello I am a PATCH method 
-  PATCH            /users/5           1737696760300             Hello I am a PATCH method 
-  PATCH            /users/5           1737696773866             Hello I am a PATCH method 
-  PATCH            /users/5           1737696784233             Hello I am a PATCH method 
-  PATCH            /users/5           1737696828603             Hello I am a PATCH method 
-  PATCH            /users/5           1737696839008             Hello I am a PATCH method 
-  PATCH            /users/5           1737696875719             Hello I am a PATCH method 
-  PATCH            /users/5           1737696937115             Hello I am a PATCH method 
-  PATCH            /users/5           1737696941650             Hello I am a PATCH method 
-  PATCH            /users/5           1737696997618             Hello I am a PATCH method 
-  PATCH            /users/5           1737697051543             Hello I am a PATCH method 
-  PATCH            /users/5           1737697074845             Hello I am a PATCH method 
-  PATCH            /users/1           1737697079545             Hello I am a PATCH method 
-  PATCH            /users/1           1737697101720             Hello I am a PATCH method 
-  PATCH            /users/1           1737697102531             Hello I am a PATCH method 
-  PATCH            /users/1           1737697132090             Hello I am a PATCH method 
-  PATCH            /users/1           1737697183602             Hello I am a PATCH method 
-  PATCH            /users/1           1737697195747             Hello I am a PATCH method 
-  PATCH            /users/1           1737697218342             Hello I am a PATCH method 
-  PATCH            /users/1           1737697244495             Hello I am a PATCH method 
-  PATCH            /users/1           1737697277604             Hello I am a PATCH method 
-  PATCH            /users/1           1737697321041             Hello I am a PATCH method 
-  PATCH            /users/1           1737697361100             Hello I am a PATCH method 
-  PATCH            /users/1           1737697383888             Hello I am a PATCH method 
-  PATCH            /users/5           1737697450946             Hello I am a PATCH method 
-  PATCH            /users/5           1737697553314             Hello I am a PATCH method 
-  PATCH            /users/1           1737697558085             Hello I am a PATCH method 
-  PATCH            /users/1           1737697582133             Hello I am a PATCH method 
-  PATCH            /users/1           1737697608025             Hello I am a PATCH method 
-  PATCH            /users/1           1737697719979             Hello I am a PATCH method 
-  PATCH            /users/5           1737697724623             Hello I am a PATCH method 
-  PATCH            /users/5           1737697750207             Hello I am a PATCH method 
-  PATCH            /users/5           1737697800090             Hello I am a PATCH method 
-  PATCH            /users/1           1737697805401             Hello I am a PATCH method 
-  PATCH            /users/1           1737697806942             Hello I am a PATCH method 
-  PATCH            /users/1           1737698052694             Hello I am a PATCH method 
-  PATCH            /users/5           1737698057343             Hello I am a PATCH method 
+  GET  /users/1  Fri Jan 24 2025 18:01:00 GMT+0530 (India Standard Time)   {} 
+  GET  /users/1  Fri Jan 24 2025 18:01:00 GMT+0530 (India Standard Time)   {} 
+  GET  /users/1  Fri Jan 24 2025 18:01:01 GMT+0530 (India Standard Time)   {} 
+  GET  /users/1  Fri Jan 24 2025 18:01:01 GMT+0530 (India Standard Time)   {} 
+  GET  /users/1  Fri Jan 24 2025 18:01:01 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:10:19 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:11:46 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:12:19 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:15:02 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:16:26 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:16:34 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:17:48 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Fri Jan 24 2025 18:19:06 GMT+0530 (India Standard Time)   {} 
+  GET  /users/10  Fri Jan 24 2025 18:19:16 GMT+0530 (India Standard Time)   {} 
+  GET  /?role=admin  Fri Jan 24 2025 18:41:11 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 18:41:32 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 18:43:57 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 18:46:03 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 18:46:54 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 18:47:06 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 18:49:46 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 18:50:20 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=false  Fri Jan 24 2025 18:50:27 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=false  Fri Jan 24 2025 18:50:29 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=false  Fri Jan 24 2025 18:52:11 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=false  Fri Jan 24 2025 18:52:12 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 18:52:23 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=opijhs  Fri Jan 24 2025 18:52:51 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=opijhs  Fri Jan 24 2025 18:54:14 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 18:54:20 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 18:56:43 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 18:59:47 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 19:00:20 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=users  Fri Jan 24 2025 19:00:32 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=users  Fri Jan 24 2025 19:00:51 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=users  Fri Jan 24 2025 19:00:51 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=users  Fri Jan 24 2025 19:00:59 GMT+0530 (India Standard Time)   {} 
+  POST  /users/  Fri Jan 24 2025 19:01:37 GMT+0530 (India Standard Time)   {"name":"aarshfgefam","email":"prath123@gmail.com","age":166,"role":"admin","isActive":true} 
+  GET  /users?role=users  Fri Jan 24 2025 19:02:56 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=users  Fri Jan 24 2025 19:04:58 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=admin  Fri Jan 24 2025 19:05:06 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=user  Fri Jan 24 2025 19:05:20 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=user  Fri Jan 24 2025 19:05:39 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=user  Fri Jan 24 2025 19:05:40 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=user  Fri Jan 24 2025 19:05:44 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=u5548545  Fri Jan 24 2025 19:05:53 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=u5548545  Fri Jan 24 2025 19:07:45 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=u5548545  Fri Jan 24 2025 19:07:56 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=u5548545  Fri Jan 24 2025 19:08:13 GMT+0530 (India Standard Time)   {} 
+  GET  /users?role=u5548545  Fri Jan 24 2025 19:10:29 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:11:16 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:11:17 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:11:26 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=truesdaedf  Fri Jan 24 2025 19:11:41 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:16:00 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:16:38 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:17:19 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:17:44 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:18:06 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:18:12 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:18:21 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=true  Fri Jan 24 2025 19:20:45 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=false  Fri Jan 24 2025 19:20:56 GMT+0530 (India Standard Time)   {} 
+  GET  /users?isActive=fiedf  Fri Jan 24 2025 19:21:04 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageGT=10  Fri Jan 24 2025 19:22:36 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageGT=50  Fri Jan 24 2025 19:22:48 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageGT=efserf  Fri Jan 24 2025 19:22:57 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=efserf  Fri Jan 24 2025 19:23:10 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=efserf  Fri Jan 24 2025 19:23:16 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=50  Fri Jan 24 2025 19:23:29 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=100  Fri Jan 24 2025 19:23:40 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=100  Fri Jan 24 2025 19:23:41 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=101  Fri Jan 24 2025 19:23:56 GMT+0530 (India Standard Time)   {} 
