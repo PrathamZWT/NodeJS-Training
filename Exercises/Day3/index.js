@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import fs from "fs";
 import 'dotenv/config';
 import users from "./constant.js";
+import { type } from "os";
 console.log(users);
 
 
@@ -11,29 +12,18 @@ const app = express();
 const PORT = process.env.APP_PORT;
 app.use(express.json());
 
-// app.use((req,res,next)=>{
-//     fs.appendFileSync('./thlog.txt',`\n  ${req.method}            ${req.url}           ${Date.now()}             Hello I am a ${req.method} method ` );
-//     next();
-// })
+app.use((req,res,next)=>{
+    fs.appendFileSync('./thlog.txt',`\n  ${req.method}            ${req.url}           ${Date.now()}             Hello I am a ${req.method} method ` );
+    next();
+})
 
-// app.use((req,res,next)=>{
-//     const method = ["GET/users/:id","PATCH/users/:id",  "DELETE/users/:id"];
-//     let tempPath = req.method+req.url;
-//     console.log(tempPath);
-    
-//     if( GET/users/req.params.id == tempPath || PATCH/users/req.params.id == tempPath){
-//         users.forEach(user => {
-//             if(user.id == req.params.id){
-//                 next();
-//             }
-//             else{
-//                 res.send( `{ error: "User not found" }`);
-//             }
-//         });
-
-//     }
-//     next();
-// })
+app.use("/users/:id",(req,res,next)=>{
+    if((req.method == "GET" || req.method == "PATCH" || req.method == "DELETE")){
+            users.forEach(user => {
+                (user.id == req.params.id) ? next() : res.send("no such user found");
+            })
+        };
+})
 
 app.get("/",(req,res)=>{
     res.send("<h1>Welcome to the User Management API!</h>");
@@ -71,14 +61,14 @@ app.get("/users/:id",(req,res)=>{
 
 app.post("/users",(req,res)=>{
     const data = req.body;
-    console.log(data);
-    console.log(typeof data);
-    console.log(typeof users);
-    let lastElement = users.pop();
+    let lastElement = users[0];
     data.id = lastElement.id + 1;
     users.push(lastElement);
     users.push(data);
-    console.log(users);
+    fs.writeFileSync("")
+    const filePath = path.join(__dirname , "allFiles", filecreateName);
+    let content = 
+     fs.writeFileSync(filePath, content);
     res.send("user added succesfully");
     
 })
