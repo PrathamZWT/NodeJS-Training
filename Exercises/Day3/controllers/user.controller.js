@@ -204,3 +204,18 @@ export const deleteUser = (req,res)=>{
      });
 }
 }
+
+export const uploadImage = (req,res)=>{
+    console.log(req.body);
+    console.log(req.body.id);
+    console.log(req.file);
+    users.find(user => {
+        if(user.id == req.body.id){
+            user.imageUrl = String(req.file.path);
+        }
+    })
+    // console.log(users);
+    
+    return res.redirect('/');
+    
+}
