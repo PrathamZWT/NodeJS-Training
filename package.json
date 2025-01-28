@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "Day2": "node ./Exercises/Day2/task3/index.js",
     "Day3": "node ./Exercises/Day3/index.js",
-    "Day4": "node ./Exercises/Day4/index.js"
+    "Day4": "node ./Exercises/Day4/index.js",
+    "Day5": "node ./Exercises/Day5/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "joi": "^17.13.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.12.0",
