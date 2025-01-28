@@ -11,7 +11,7 @@ export const userExistsDB = async (id) => {
     return rows.length > 0;
 }
 
-async function createrUserTable() {
+export const createrUserTable = async () => {
     try {
         const usersTable = await connection.query(
             ` CREATE TABLE users (
@@ -24,7 +24,7 @@ async function createrUserTable() {
                 createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
                 updatedAt TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW() )`
         );
-        return user
+        return usersTable
     } catch (error) {
         console.log("Error occured in creating table ", error);
     }
@@ -50,11 +50,11 @@ export const updateUserDB  = async (body,id) => {
         let sql = `UPDATE users SET`;
         console.log(Object.entries(body));
         
-        Object.entries(body).forEach(([key, value]) => {
+        Object.entries(body).forEach(([key, value],index) => {
             const valueToSet = typeof body[key] === 'string' ? `'${value}'` : value;
-            sql += ` ${key}=${valueToSet},`;
+            sql += ` ${key}=${valueToSet}` + ((Object.keys(body).length-1 == index) ? ``:`, `);
         });
-        sql = sql.slice(0, -1); // Remove last ","
+        // sql = sql.slice(0, -1); // Remove last ","
     sql += ` WHERE id=${id};`;
     const updateDetails = await connection.query(sql) 
     return updateDetails;
@@ -102,12 +102,12 @@ export const getUsersDB = async (id) => {
                     console.log(error);
                     
                 }
-                
+            }
                 
                 // user image
                 
                 
-                async function createrUserImage() {
+        export const createrUserImages = async () => {
                     try {
                         const usersImageTable = await connection.query(
                             ` CREATE TABLE user_images (
@@ -127,7 +127,7 @@ export const getUsersDB = async (id) => {
                         console.log("Error occured in creating table ", error);
                     }
                 }
-            }
+            
             
             
             export const addUserImageDB =  async (userID , file) => {

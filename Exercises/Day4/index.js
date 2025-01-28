@@ -4,10 +4,11 @@ import users from "../../constant.js";
 import userRouter from "./routes/user.route.js";
 import { logger } from "./middlewares/logger.js";
 import multer from "multer";
-import { connection } from "./models/db_connections.js";
+import { checkDB, connection } from "./models/db_connections.js";
 console.log(users);
 
 connection;
+checkDB();
 const upload = multer({dest: "uploads/"});
 const app = express();
 const PORT = process.env.APP_PORT;
