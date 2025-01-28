@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "Day2": "node ./Exercises/Day2/task3/index.js",
-    "Day3": "node ./Exercises/Day3/index.js"
+    "Day3": "node ./Exercises/Day3/index.js",
+    "Day4": "node ./Exercises/Day4/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "express": "^4.21.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.12.0",
     "url": "^0.11.4"
   }
 }
