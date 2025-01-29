@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addUser,
+  addUserForm,
   addUserProfile,
   deleteUser,
   deleteUserImage,
@@ -16,6 +17,7 @@ import {
 import { idMiddleWare } from "../middlewares/idMiddleware.js";
 import { fileUploadFilter } from "../middlewares/imageUploader.js";
 import { idProfileMiddleWare } from "../middlewares/idProfileMiddleware.js";
+import { pdfUploadFilter } from "../middlewares/formUploader.js";
 const router = express.Router();
 
 // root
@@ -39,4 +41,5 @@ router.get("/user-profile/", getUserProfileById);
 router.put("/user-profile/:id", idProfileMiddleWare, updateUserprofile);
 router.delete("/user-profile/:id", idProfileMiddleWare, deleteUserProfile);
 
+router.post("/user-form", pdfUploadFilter, addUserForm);
 export default router;

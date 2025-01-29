@@ -7,6 +7,7 @@
 // import { validateName } from "../validators/nameValidator.js";
 // import { ifError } from "assert";
 
+import { addFormDB } from "../models/form.model.js";
 import { addUserImageDB, deleteImageDB } from "../models/user.images.model.js";
 import {
   addUserDB,
@@ -24,6 +25,7 @@ import {
   userProfileExistsDB,
 } from "../models/userProfile.model.js";
 import {
+  CreateformSchema,
   createUserProfileSchema,
   createUserProfileUpdateSchema,
   CreateUserSchema,
@@ -157,7 +159,7 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-//<------------------------------------------------------user-images Table funcrions------------------------------------------------------>//
+//<------------------------------------------------------user-images Table functions------------------------------------------------------>//
 
 //  upload image in user-images
 export const uploadImage = async (req, res) => {
@@ -311,6 +313,25 @@ export const deleteUserProfile = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       message: "UserProfile deleted succesfully",
+    });
+  }
+};
+
+export const addUserForm = async (req, res) => {
+  try {
+    await CreateformSchema.validate(req.body, {
+      abortEarly: false,
+    });
+    const { name, email, age, role, isActive } = req?.body;
+    let added = await addFormDB(name, email, age, role, isActive, req.file);
+    if (added) {
+      res.status(200).json({ message: "form added succesfully" });
+    } else {
+      res.status(404).json({ message: "form was not added" });
+    }
+  } catch (error) {
+    return res.status(400).json({
+      error: error.errors,
     });
   }
 };

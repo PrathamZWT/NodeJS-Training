@@ -38,7 +38,7 @@ export const getUserSchema = Yup.object({
     .optional(),
 });
 
-// // User Profile
+//  User Profile
 export const createUserProfileSchema = Yup.object({
   userId: Yup.number("userId must be integer").required(
     "  filed is empty it is required"
@@ -53,4 +53,22 @@ export const createUserProfileUpdateSchema = Yup.object({
   linkedInUrl: Yup.string().url().required("  filed is empty it is required"),
   facebookUrl: Yup.string().url().required("  filed is empty it is required"),
   instaUrl: Yup.string().url().required("  filed is empty it is required"),
+});
+
+// user form
+
+export const CreateformSchema = Yup.object({
+  name: Yup.string().required("Name field is empty; it is required"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email field is empty; it is required"),
+  age: Yup.number()
+    .integer("Age must be an integer")
+    .required("Age field is empty; it is required"),
+  role: Yup.string()
+    .oneOf(["Admin", "User"], "Role must be either 'Admin' or 'User'")
+    .required("Role field is empty; it is required"),
+  isActive: Yup.boolean()
+    .oneOf([true, false], "isActive must be either true or false")
+    .required("isActive field is empty; it is required"),
 });
