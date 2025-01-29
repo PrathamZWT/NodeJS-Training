@@ -8,7 +8,7 @@ export const idProfileMiddleWare = async (req,res,next) => {
         if (user == 1) {
             next();
         } else {
-            res.send("no such user found");
+            res.send("no such userProfile found");
         }
     } catch (error) {
         console.log(error);

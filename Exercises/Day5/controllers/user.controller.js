@@ -6,7 +6,7 @@ import { validateIsActive } from "../validators/isActiveValidator.js";
 import { validateRole } from "../validators/roleValidator.js";
 import { validateName } from "../validators/nameValidator.js";
 import { ifError } from "assert";
-import { addUserDB, addUserImageDB, addUserProfileDB, deleteUserDB, deleteUserProfileDB, getUsersDB, getUsersProfileDB, updateUserDB, updateUserProfileDB, userExistsDB, userProfileExistsDB } from "../models/user.model.js";
+import { addUserDB, addUserImageDB, addUserProfileDB, deleteImageDB, deleteUserDB, deleteUserProfileDB, getUsersDB, getUsersProfileDB, updateUserDB, updateUserProfileDB, userExistsDB, userProfileExistsDB } from "../models/user.model.js";
 import { createUserProfileSchema, createUserProfileUpdateSchema } from "../validators/joiValidators.js";
 
 // Task 1
@@ -350,7 +350,7 @@ export const updateUserprofile = async (req, res) => {
             }
             catch (error) {
                 res.status(404).json({
-                    message: "UserProfile deleted succesfully"
+                    message: "UserProfile was not deleted "
                 })
             }
         }

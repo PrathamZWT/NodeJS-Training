@@ -3,8 +3,8 @@ import { userExistsDB } from "../models/user.model.js";
 
 export const idMiddleWare = async (req,res,next) => {
     try {    
-        let user = await userExistsDB(req.params.id);
-        console.log(user);
+        let user = await userExistsDB(req.params.id || req.params.userId );
+        // console.log(user);
         if (user == 1) {
             next();
         } else {
