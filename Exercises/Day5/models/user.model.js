@@ -67,7 +67,14 @@ export const updateUserDB = async (body, id) => {
     // sql = sql.slice(0, -1); // Remove last ","
     sql += ` WHERE id=${id};`;
     const updateDetails = await connection.query(sql);
-    return updateDetails;
+    let updatedview = await connection.query(
+      `SELECT *
+                      FROM
+                      users
+                      WHERE id = ? `,
+      [id]
+    );
+    return [updateDetails, updatedview];
   } catch (error) {
     console.log("Error occured in updating user in table ", error);
   }
