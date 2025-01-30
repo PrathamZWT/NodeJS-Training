@@ -8,7 +8,8 @@
     "Day2": "node ./Exercises/Day2/task3/index.js",
     "Day3": "node ./Exercises/Day3/index.js",
     "Day4": "node ./Exercises/Day4/index.js",
-    "Day5": "node ./Exercises/Day5/index.js"
+    "Day5": "node ./Exercises/Day5/index.js",
+    "Day6": "node ./Exercises/Day6/index.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,11 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.12.0",
+    "sequelize": "^6.37.5",
     "url": "^0.11.4",
     "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
   }
 }

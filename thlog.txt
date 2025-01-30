@@ -520,3 +520,91 @@
   PATCH  /users/3  Wed Jan 29 2025 17:53:48 GMT+0530 (India Standard Time)   {"name":"pratham"} 
   PATCH  /users/4  Wed Jan 29 2025 17:54:15 GMT+0530 (India Standard Time)   {"name":"pratham"} 
   PATCH  /users/5  Wed Jan 29 2025 17:54:32 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  GET  /  Thu Jan 30 2025 14:55:39 GMT+0530 (India Standard Time)   {} 
+  GET  /favicon.ico  Thu Jan 30 2025 14:55:39 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:03:05 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:03:53 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:05:38 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:06:06 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:06:31 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:07:13 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:08:38 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:08:48 GMT+0530 (India Standard Time)   {} 
+  GET  /users  Thu Jan 30 2025 17:10:48 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 17:10:59 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 17:11:19 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 17:11:29 GMT+0530 (India Standard Time)   {} 
+  GET  /users/2  Thu Jan 30 2025 17:16:45 GMT+0530 (India Standard Time)   {} 
+  POST  /users/  Thu Jan 30 2025 17:18:20 GMT+0530 (India Standard Time)   {"name":"Charlie White","email":"charlie.whhhgite@example.com","age":131,"isActive":false} 
+  POST  /users/  Thu Jan 30 2025 17:18:49 GMT+0530 (India Standard Time)   {"name":"Charlie White","email":"charlie.whhhgite@example.com","age":131,"isActive":false,"role":"Admin"} 
+  POST  /users/  Thu Jan 30 2025 17:21:19 GMT+0530 (India Standard Time)   {"name":"Charlie White","email":"charlie.whhhgite@example.com","age":131,"isActive":false,"role":"Admin"} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 17:21:23 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 17:28:40 GMT+0530 (India Standard Time)   {} 
+  PATCH  /users/8  Thu Jan 30 2025 17:28:52 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/8  Thu Jan 30 2025 17:34:05 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/8  Thu Jan 30 2025 17:40:11 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/8  Thu Jan 30 2025 17:41:48 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/8  Thu Jan 30 2025 17:43:50 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/8  Thu Jan 30 2025 17:46:06 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/8  Thu Jan 30 2025 17:47:13 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/7  Thu Jan 30 2025 17:47:56 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  PATCH  /users/7  Thu Jan 30 2025 17:50:17 GMT+0530 (India Standard Time)   {"name":"pratham"} 
+  DELETE  /users/4  Thu Jan 30 2025 17:52:43 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 17:52:51 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:03:18 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:03:53 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:04:23 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:05:52 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:07:18 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:07:56 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:08:27 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:11:56 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:12:58 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:25:11 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:25:41 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:27:45 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:28:04 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:29:47 GMT+0530 (India Standard Time)   {} 
+  POST  /upload-image  Thu Jan 30 2025 18:31:07 GMT+0530 (India Standard Time)   {} 
+  DELETE  /upload-image/2  Thu Jan 30 2025 18:35:14 GMT+0530 (India Standard Time)   {} 
+  DELETE  /upload-image/2  Thu Jan 30 2025 18:35:31 GMT+0530 (India Standard Time)   {} 
+  DELETE  /upload-image/2  Thu Jan 30 2025 18:35:54 GMT+0530 (India Standard Time)   {} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 18:39:48 GMT+0530 (India Standard Time)   {} 
+  POST  /user-profile  Thu Jan 30 2025 18:39:56 GMT+0530 (India Standard Time)   {"userId":8,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /users/  Thu Jan 30 2025 18:40:43 GMT+0530 (India Standard Time)   {"name":" White","email":".whhhgite@example.com","age":131,"isActive":false,"role":"Admin"} 
+  GET  /users?ageLT=101  Thu Jan 30 2025 18:40:51 GMT+0530 (India Standard Time)   {} 
+  POST  /user-profile  Thu Jan 30 2025 18:41:02 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  DELETE  /users/1  Thu Jan 30 2025 18:44:07 GMT+0530 (India Standard Time)   {} 
+  POST  /user-profile  Thu Jan 30 2025 18:44:29 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:48:30 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:50:33 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:51:25 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:52:13 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:53:14 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:54:33 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:55:33 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:57:01 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:57:10 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:58:49 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:59:29 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:59:52 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 18:59:59 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  POST  /user-profile  Thu Jan 30 2025 19:02:07 GMT+0530 (India Standard Time)   {"userId":9,"bio":"digital marketer","linkedInUrl":"https://www.linkedin.com/in/markjohnson","facebookUrl":"https://www.facebook.com/markjohnson","instaUrl":"https://www.instagram.com/markjohnson"} 
+  GET  /user-profile/  Thu Jan 30 2025 19:04:20 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/10  Thu Jan 30 2025 19:04:45 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/10  Thu Jan 30 2025 19:06:39 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/10  Thu Jan 30 2025 19:07:36 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/10  Thu Jan 30 2025 19:07:51 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/11  Thu Jan 30 2025 19:08:46 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/  Thu Jan 30 2025 19:09:20 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/11  Thu Jan 30 2025 19:09:34 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/11  Thu Jan 30 2025 19:11:06 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/11  Thu Jan 30 2025 19:11:20 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/  Thu Jan 30 2025 19:11:41 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/  Thu Jan 30 2025 19:12:21 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/11  Thu Jan 30 2025 19:12:24 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/  Thu Jan 30 2025 19:20:22 GMT+0530 (India Standard Time)   {} 
+  GET  /user-profile/  Thu Jan 30 2025 19:20:37 GMT+0530 (India Standard Time)   {} 
+  PUT  /user-profile/15  Thu Jan 30 2025 19:29:15 GMT+0530 (India Standard Time)   {"bio":"maths","linkedInUrl":"https://www.linono.com/in/johndoe","facebookUrl":"https://www.facebnonoook.com/johndoe","instaUrl":"https://www.instagnonoram.com/johndoe"} 
+  PUT  /user-profile/15  Thu Jan 30 2025 19:29:53 GMT+0530 (India Standard Time)   {"bio":"maths","linkedInUrl":"https://www.linono.com/in/johndoe","facebookUrl":"https://www.facebnonoook.com/johndoe","instaUrl":"https://www.instagnonoram.com/johndoe"} 
+  PUT  /user-profile/15  Thu Jan 30 2025 19:30:26 GMT+0530 (India Standard Time)   {"bio":"maths","linkedInUrl":"https://www.linono.com/in/johndoe","facebookUrl":"https://www.facebnonoook.com/johndoe","instaUrl":"https://www.instagnonoram.com/johndoe"} 
