@@ -58,3 +58,16 @@ export const updateUserProfileDB = async (body, id) => {
     console.log("Error occured in updating user in table ", error);
   }
 };
+
+export const deleteUserProfileDB = async (id) => {
+  try {
+    let deleted = await UserProfiles.destroy({
+      where: {
+        id,
+      },
+    });
+    return deleted;
+  } catch (error) {
+    console.log(error);
+  }
+};

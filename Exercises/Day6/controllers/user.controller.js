@@ -40,6 +40,7 @@ import {
 } from "../services/user.images.services.js";
 import {
   addUserProfileDB,
+  deleteUserProfileDB,
   getUsersProfileDB,
   updateUserProfileDB,
 } from "../services/user.profile.services.js";
@@ -93,6 +94,7 @@ export const getUsers = async (req, res) => {
 };
 
 // gat data of id passes from user table
+
 export const getUserById = async (req, res) => {
   const uID = req.params.id;
   if (isNaN(uID)) {
@@ -101,9 +103,20 @@ export const getUserById = async (req, res) => {
       .json({ message: "Invaild Entry Unprocessable Entity" });
   }
   try {
-    return res
-      .status(200)
-      .json({ userData: await User.findOne({ where: { id: uID } }) });
+    return res.status(200).json({
+      userData: await User.findOne({
+        include: [
+          {
+            model: UserImages,
+            required: true,
+          },
+          {
+            model: UserProfiles,
+            required: true,
+          },
+        ],
+      }),
+    });
   } catch (error) {
     console.log(error);
     return res.status(400).json({
@@ -330,23 +343,23 @@ export const updateUserprofile = async (req, res) => {
   }
 };
 
-// //  delete user from user-profiles
+//  delete user from user-profiles
 
-// export const deleteUserProfile = async (req, res) => {
-//   let uID = Number(req.params.id);
-//   try {
-//     let result = await deleteUserProfileDB(uID);
-//     if (result) {
-//       res.status(200).json({
-//         message: "UserProfile deleted succesfully",
-//       });
-//     }
-//   } catch (error) {
-//     res.status(404).json({
-//       message: "UserProfile deleted succesfully",
-//     });
-//   }
-// };
+export const deleteUserProfile = async (req, res) => {
+  let uID = Number(req.params.id);
+  try {
+    let result = await deleteUserProfileDB(uID);
+    if (result) {
+      res.status(200).json({
+        message: "UserProfile deleted succesfully",
+      });
+    }
+  } catch (error) {
+    res.status(404).json({
+      message: "UserProfile deleted succesfully",
+    });
+  }
+};
 
 // export const addUserForm = async (req, res) => {
 //   try {

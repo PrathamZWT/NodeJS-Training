@@ -5,6 +5,7 @@ import {
   addUserProfile,
   deleteUser,
   deleteUserImage,
+  deleteUserProfile,
   //   deleteUserProfile,
   getUserById,
   getUserProfileById,
@@ -39,7 +40,7 @@ router.post("/user-profile", addUserProfile);
 router.get("/user-profile/:id", idProfileMiddleWare, getUserProfileById);
 router.get("/user-profile/", getUserProfileById);
 router.put("/user-profile/:id", idProfileMiddleWare, updateUserprofile);
-// router.delete("/user-profile/:id", idProfileMiddleWare, deleteUserProfile);
+router.delete("/user-profile/:id", idProfileMiddleWare, deleteUserProfile);
 
 // router.post("/user-form", pdfUploadFilter, addUserForm);
 export default router;
