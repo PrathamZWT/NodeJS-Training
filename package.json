@@ -9,7 +9,11 @@
     "Day3": "node ./Exercises/Day3/index.js",
     "Day4": "node ./Exercises/Day4/index.js",
     "Day5": "node ./Exercises/Day5/index.js",
-    "Day6": "node ./Exercises/Day6/index.js"
+    "Day6": "node ./Exercises/Day6/index.js",
+    "Day7": "node ./Exercises/Day7/index.js",
+    "Day8": "node ./Exercises/Day8/index.js",
+    "migrate": "sequelize-cli db:migrate -r esm",
+    "seed": "sequelize-cli db:seed:all -r esm"
   },
   "repository": {
     "type": "git",
@@ -24,10 +28,14 @@
   "homepage": "https://github.com/PrathamZWT/NodeJS-Training#readme",
   "description": "",
   "dependencies": {
+    "@faker-js/faker": "^9.4.0",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
+    "esm": "^3.2.25",
     "express": "^4.21.2",
     "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.12.0",
