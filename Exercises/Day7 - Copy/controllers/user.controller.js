@@ -122,7 +122,7 @@ export const getUserById = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).json({
+    return res.status(404).json({
       error: error.errors,
     });
   }
@@ -149,7 +149,7 @@ export const addUser = async (req, res) => {
       return res.status(500).json({ message: "Failed to add user" });
     }
   } catch (error) {
-    return res.status(400).json({ error: error.errors || error.message });
+    return res.status(404).json({ error: error.errors || error.message });
   }
 };
 // signUp user in users table
@@ -174,7 +174,7 @@ export const signUp = async (req, res) => {
       return res.status(500).json({ message: "Failed to add user" });
     }
   } catch (error) {
-    return res.status(400).json({ error: error.errors || error.message });
+    return res.status(404).json({ error: error.errors || error.message });
   }
 };
 
@@ -199,7 +199,7 @@ export const login = async (req, res) => {
 
     res.status(200).json({ success: true, message: "Login successful" });
   } catch (error) {
-    return res.status(400).json({ error: error.errors || error.message });
+    return res.status(404).json({ error: error.errors || error.message });
   }
 };
 
@@ -235,7 +235,7 @@ export const updateUser = async (req, res) => {
       });
     }
   } catch (error) {
-    return res.status(400).json({
+    return res.status(404).json({
       error: error.errors || error.message,
     });
   }
@@ -324,7 +324,7 @@ export const addUserProfile = async (req, res) => {
   const { error } = createUserProfileSchema.validate(req.body);
 
   if (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    return res.status(404).json({ message: error.details[0].message });
   } else {
     try {
       if (await UserProfiles.findOne({ where: { userId } })) {
@@ -382,7 +382,7 @@ export const updateUserprofile = async (req, res) => {
   console.log(userId);
 
   if (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    return res.status(404).json({ message: error.details[0].message });
   } else {
     try {
       if (await UserProfiles.findByPk(userId)) {
@@ -432,7 +432,7 @@ export const deleteUserProfile = async (req, res) => {
 //       res.status(404).json({ message: "form was not added" });
 //     }
 //   } catch (error) {
-//     return res.status(400).json({
+//     return res.status(404).json({
 //       error: error.errors,
 //     });
 //   }

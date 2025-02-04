@@ -92,7 +92,7 @@ export const getUserById = async (req, res) => {
     return res.status(200).json({ userData: await getUsersDB(uID) });
   } catch (error) {
     console.log(error);
-    return res.status(400).json({
+    return res.status(404).json({
       error: error.errors,
     });
   }
@@ -113,7 +113,7 @@ export const addUser = async (req, res) => {
       res.status(404).json({ message: "user was not added" });
     }
   } catch (error) {
-    return res.status(400).json({
+    return res.status(404).json({
       error: error.errors,
     });
   }
@@ -137,7 +137,7 @@ export const updateUser = async (req, res) => {
       });
     }
   } catch (error) {
-    return res.status(400).json({
+    return res.status(404).json({
       error: error.errors,
     });
   }
@@ -222,7 +222,7 @@ export const addUserProfile = async (req, res) => {
   const { error } = createUserProfileSchema.validate(req.body);
 
   if (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    return res.status(404).json({ message: error.details[0].message });
   } else {
     try {
       if (!(await userIdExistsDB(userId))) {
@@ -281,7 +281,7 @@ export const updateUserprofile = async (req, res) => {
   console.log(userId);
 
   if (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    return res.status(404).json({ message: error.details[0].message });
   } else {
     try {
       if (await userProfileExistsDB(userId)) {
@@ -331,7 +331,7 @@ export const addUserForm = async (req, res) => {
       res.status(404).json({ message: "form was not added" });
     }
   } catch (error) {
-    return res.status(400).json({
+    return res.status(404).json({
       error: error.errors,
     });
   }

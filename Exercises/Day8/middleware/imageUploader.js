@@ -3,7 +3,7 @@ import multer from "multer";
 let fileTypeValid = false;
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads");
+    cb(null, "./products");
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`);
@@ -27,7 +27,7 @@ const fileFilter = (req, file, cb) => {
     fileTypeValid = false;
   }
 };
-const upload = multer({ storage: storage, fileFilter }).single("profile-image");
+const upload = multer({ storage: storage, fileFilter }).single("product-image");
 console.log(upload);
 export const fileUploadFilter = (req, res, next) => {
   upload(req, res, function (err) {

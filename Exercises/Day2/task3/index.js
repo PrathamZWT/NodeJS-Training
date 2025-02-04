@@ -24,7 +24,7 @@ const myServer = http
         let fileName = myUrl.query.name;
 
         if (!fileName) {
-          res.writeHead(400, { "Content-Type": "text/plain" });
+          res.writeHead(404, { "Content-Type": "text/plain" });
           res.end("Error: Missing 'name' query parameter");
           return;
         }
