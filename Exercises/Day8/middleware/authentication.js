@@ -16,6 +16,6 @@ export const authentication = (req, res, next) => {
       next();
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: `user is not authorized ${error}` });
   }
 };
