@@ -7,30 +7,31 @@ import Products from "./products.model.js";
 
 //<------------------------------------------------------products Table Model------------------------------------------------------>//
 
-const Wishlists = connection.define("Wishlists", {
-  // User who added the item
-  user_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Users,
-      key: "id",
+const Wishlist = connection.define(
+  "Wishlist",
+  {
+    // User who added the item
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: Users,
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
-    onDelete: "CASCADE",
-  },
-  // Product added to cart
-  product_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Products,
-      key: "id",
+    // Product added to cart
+    product_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: Products,
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
-    onDelete: "CASCADE",
   },
-  // Quantity of the product
-  quantity: {
-    type: DataTypes.INTEGER,
-    defaultValue: 1,
-  },
-});
+  {
+    updatedAt: false,
+  }
+);
 
-export default Wishlists;
+export default Wishlist;

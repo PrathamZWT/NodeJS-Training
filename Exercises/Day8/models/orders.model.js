@@ -3,12 +3,11 @@ import { DataTypes } from "sequelize";
 import bcrypt from "bcrypt";
 import Categories from "./categories.model.js";
 import Users from "./users.model.js";
-import Products from "./products.model.js";
 
 //<------------------------------------------------------products Table Model------------------------------------------------------>//
 
-const Carts = connection.define("Carts", {
-  // User who added the product
+const Orders = connection.define("Orders", {
+  // User who added the item
   user_id: {
     type: DataTypes.INTEGER,
     references: {
@@ -17,19 +16,16 @@ const Carts = connection.define("Carts", {
     },
     onDelete: "CASCADE",
   },
-  // Product added to wishlist
-  product_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Products,
-      key: "id",
-    },
-    onDelete: "CASCADE",
-  },
-  quantity: {
-    type: DataTypes.INTEGER,
+  // Total order price
+  total_price: {
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
+  },
+  // Order status
+  status: {
+    type: DataTypes.ENUM("pending", "shipped", "delivered", "canceled"),
+    defaultValue: "pending",
   },
 });
 
-export default Carts;
+export default Orders;

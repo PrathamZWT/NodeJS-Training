@@ -14,7 +14,7 @@ const router = express.Router();
 router.post("/", authorizeRole("admin"), fileUploadFilter, addNewProduct);
 router.get("/", getAllProducts);
 router.get("/:id", getProductDetail);
-router.put("/:id", authorizeRole("admin"), fileUploadFilter, updateProduct);
+router.patch("/:id", authorizeRole("admin"), fileUploadFilter, updateProduct);
 router.delete("/:id", authorizeRole("admin"), DeleteProduct);
 // router.get("/profile", authorizeRole("admin", "customer"), getUserProfile);
 // router.put("/profile", authorizeRole("admin", "customer"), updateUserProfile);

@@ -2,17 +2,17 @@ import connection from "./index.js";
 import { DataTypes } from "sequelize";
 import bcrypt from "bcrypt";
 import Categories from "./categories.model.js";
-import Users from "./users.model.js";
+import Orders from "./orders.model.js";
 import Products from "./products.model.js";
 
 //<------------------------------------------------------products Table Model------------------------------------------------------>//
 
-const Carts = connection.define("Carts", {
+const Order_Items = connection.define("Order_Items", {
   // User who added the product
-  user_id: {
+  order_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: Users,
+      model: Orders,
       key: "id",
     },
     onDelete: "CASCADE",
@@ -30,6 +30,11 @@ const Carts = connection.define("Carts", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  // Total order price
+  price: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+  },
 });
 
-export default Carts;
+export default Order_Items;

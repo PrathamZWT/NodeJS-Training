@@ -14,7 +14,7 @@ export const registerSchema = Yup.object({
     .required("Password is required"),
   role: Yup.string()
     .oneOf(
-      ["Admin", "User", "user", "admin"],
+      ["Admin", "Customer", "customer", "admin"],
       "Role must be either 'Admin' or 'User'"
     )
     .required("Role is required"),

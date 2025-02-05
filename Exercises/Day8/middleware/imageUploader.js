@@ -42,13 +42,17 @@ export const fileUploadFilter = (req, res, next) => {
     if (err) {
       return res.status(404).json({ message: err.message });
     }
-    const fileSizeInBytes = req.file.size;
-    const maxFileSizeInBytes = 5 * 1024 * 1024;
-    if (fileSizeInBytes > maxFileSizeInBytes) {
-      return res.status(404).json({
-        message: "File size exceeds 5 MB. Please upload a smaller file.",
-      });
+    if (req.file === undefined) {
+      next();
+    } else {
+      const fileSizeInBytes = req.file.size;
+      const maxFileSizeInBytes = 5 * 1024 * 1024;
+      if (fileSizeInBytes > maxFileSizeInBytes) {
+        return res.status(404).json({
+          message: "File size exceeds 5 MB. Please upload a smaller file.",
+        });
+      }
+      next();
     }
-    next();
   });
 };

@@ -4,9 +4,6 @@ dotenv.config();
 
 export const authorizeRole = (...allowedRoles) => {
   return (req, res, next) => {
-    console.log("dwdwddw");
-    console.log(req.body);
-
     const token = req.headers.authorization;
     const jwttoken = token.split(" ")[1];
     try {
