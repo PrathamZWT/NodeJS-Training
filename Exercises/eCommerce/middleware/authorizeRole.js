@@ -4,9 +4,9 @@ dotenv.config();
 
 export const authorizeRole = (...allowedRoles) => {
   return (req, res, next) => {
-    const token = req.headers.authorization;
-    const jwttoken = token.split(" ")[1];
     try {
+      const token = req.headers.authorization;
+      const jwttoken = token.split(" ")[1];
       const decoded = jwt.verify(jwttoken, process.env.JWT_SECRET_KEY);
 
       console.log(decoded);
