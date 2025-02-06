@@ -5,7 +5,7 @@ import Categories from "./categories.model.js";
 import Users from "./users.model.js";
 import Products from "./products.model.js";
 
-//<------------------------------------------------------products Table Model------------------------------------------------------>//
+//<------------------------------------------------------carts Table Model------------------------------------------------------>//
 
 const Carts = connection.define("Carts", {
   // User who added the product

@@ -45,6 +45,7 @@ export const fileUploadFilter = (req, res, next) => {
     if (req.file === undefined) {
       next();
     } else {
+      req.body.image_url = req.file.path;
       const fileSizeInBytes = req.file.size;
       const maxFileSizeInBytes = 5 * 1024 * 1024;
       if (fileSizeInBytes > maxFileSizeInBytes) {

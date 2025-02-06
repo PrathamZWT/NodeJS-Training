@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import Categories from "./categories.model.js";
 import Users from "./users.model.js";
 
-//<------------------------------------------------------products Table Model------------------------------------------------------>//
+//<------------------------------------------------------orders Table Model------------------------------------------------------>//
 
 const Orders = connection.define("Orders", {
   // User who added the item

@@ -11,7 +11,7 @@
     "Day5": "node ./Exercises/Day5/index.js",
     "Day6": "node ./Exercises/Day6/index.js",
     "Day7": "node ./Exercises/Day7/index.js",
-    "Day8": "node ./Exercises/Day8/index.js",
+    "eCommerce": "node ./Exercises/eCommerce/index.js",
     "migrate": "sequelize-cli db:migrate -r esm",
     "seed": "sequelize-cli db:seed:all -r esm"
   },

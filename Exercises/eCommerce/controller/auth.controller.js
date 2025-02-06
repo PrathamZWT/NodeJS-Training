@@ -13,6 +13,10 @@ export const register = async (req, res) => {
     });
     const { first_name, last_name, email, password, role } = req.body;
     try {
+      if (await Users.findOne({ where: { email } })) {
+        return res.status(404).json({ message: "email is already registered" });
+      }
+
       await Users.create({ first_name, last_name, email, password, role });
       res.status(201).json("user created successfully");
     } catch (error) {
@@ -55,7 +59,6 @@ export const login = async (req, res) => {
             success: true,
             message: `Login successful `,
             token,
-            validateUser,
           });
         }
       }

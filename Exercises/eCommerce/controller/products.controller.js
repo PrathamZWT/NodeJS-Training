@@ -96,7 +96,7 @@ export const getProductDetail = async (req, res) => {
     });
   }
 };
-
+// Update a product
 export const updateProduct = async (req, res) => {
   try {
     await updateProductSchema.validate(req.body, {
@@ -114,6 +114,7 @@ export const updateProduct = async (req, res) => {
       ...(category_id && { category_id: category_id }),
       ...(image_url && { image_url: image_url }),
     };
+
     let product = await Products.findOne({ where: { id } });
     if (product) {
       if (req.file) {
@@ -122,11 +123,7 @@ export const updateProduct = async (req, res) => {
 
         if (image) {
           const fileName = path.basename(image);
-
-          // Construct absolute path
           const absolutePath = path.join("D:/NodeJS/products", fileName);
-
-          // Check if file exists before deleting
           if (fs.existsSync(absolutePath)) {
             fs.unlinkSync(absolutePath);
             console.log("File deleted successfully:", fileName);
@@ -138,24 +135,26 @@ export const updateProduct = async (req, res) => {
         }
       }
 
-      if (await Categories.findByPk(category_id)) {
-        let [updated] = await Products.update(changes, {
-          where: { id },
-        });
-
-        if (updated) {
-          let updatedUser = await Products.findByPk(req.params.id);
-          return res.status(200).json({
-            message: "product updated successfully",
-            userdata: updatedUser,
-          });
-        } else {
-          return res.status(404).json({
-            message: "product was not updated",
-          });
+      if (category_id) {
+        let categoriesExists = await Categories.findByPk(category_id);
+        if (!categoriesExists) {
+          res.status(404).json({ message: " no such category exists" });
         }
+      }
+      let [updated] = await Products.update(changes, {
+        where: { id },
+      });
+
+      if (updated) {
+        let updatedUser = await Products.findByPk(req.params.id);
+        return res.status(200).json({
+          message: "product updated successfully",
+          userdata: updatedUser,
+        });
       } else {
-        res.status(404).json({ message: " no such category exists" });
+        return res.status(404).json({
+          message: "product was not updated",
+        });
       }
     } else {
       res.status(404).json({ message: "no such product found" });
@@ -168,6 +167,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
+// Delete a product
 export const DeleteProduct = async (req, res) => {
   try {
     const id = req.params.id;

@@ -1,9 +1,14 @@
 import Yup from "yup";
 export const registerSchema = Yup.object({
-  first_name: Yup.string().required("Name is required"),
-  last_name: Yup.string().required("Name is required"),
+  first_name: Yup.string()
+    .matches(/^[A-Za-z'-]+$/, "name must be alphabetic letters onlys")
+    .required("Name is required"),
+  last_name: Yup.string()
+    .matches(/^[A-Za-z'-]+$/, "name must be alphabetic letters onlys")
+    .required("Name is required"),
   email: Yup.string()
-    .email("Invalid email format")
+    .trim()
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format")
     .required("Email is required"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")

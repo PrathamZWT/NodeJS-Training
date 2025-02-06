@@ -2,15 +2,15 @@
 /** @type {import('sequelize-cli').Migration} */
 export default {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("order-items", {
-      // Unique wishlist ID
+    await queryInterface.createTable("order_items", {
+      // Unique order item ID
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      // User who added the product
+      // Associated order ID
       order_id: {
         type: Sequelize.INTEGER,
         references: {
@@ -19,7 +19,7 @@ export default {
         },
         onDelete: "CASCADE",
       },
-      // Product added to wishlist
+      // Purchased product ID
       product_id: {
         type: Sequelize.INTEGER,
         references: {
@@ -28,17 +28,17 @@ export default {
         },
         onDelete: "CASCADE",
       },
-      // Total order price
+      // Quantity purchased
       quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      // Total order price
+      //Price at the time of order
       price: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
-      // Order creation timestamp
+      // Order item creation timestamp
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -54,6 +54,6 @@ export default {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("order-items");
+    await queryInterface.dropTable("order_items");
   },
 };

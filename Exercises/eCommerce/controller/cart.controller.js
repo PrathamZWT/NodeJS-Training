@@ -3,13 +3,13 @@ import Products from "../models/products.model.js";
 import Users from "../models/users.model.js";
 import { addProductToCartSchema } from "../validators/addProductToCartSchema.js";
 
+// Add product to cart (/api/cart)
 export const addProductToCart = async (req, res) => {
   try {
     await addProductToCartSchema.validate(req.body, {
       abortEarly: false,
     });
     console.log(req.body);
-
     let product_id = req.body.product_id;
     let user_id = req.user.id;
     let quantity = req.body.quantity;
@@ -47,6 +47,8 @@ export const addProductToCart = async (req, res) => {
   }
 };
 
+// Get cart items
+
 export const getCartItems = async (req, res) => {
   try {
     let user_id = req.user.id;
@@ -79,7 +81,7 @@ export const getCartItems = async (req, res) => {
     });
   }
 };
-
+// Remove item from cart
 export const removeItemFromCart = async (req, res) => {
   try {
     let userId = req.user.id;

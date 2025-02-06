@@ -10,7 +10,9 @@ export const getUserProfile = async (req, res) => {
 
     if (req.user.role === "user") {
       console.log("user");
-      const userData = await Users.findByPk(req.user.id);
+      const userData = await Users.findByPk(req.user.id, {
+        attributes: { exclude: ["password"] },
+      });
       if (userData) {
         return res.status(200).json({ user: userData });
       } else {
@@ -21,14 +23,18 @@ export const getUserProfile = async (req, res) => {
       let inputID = req.body.userid;
       if (!(inputID === undefined)) {
         console.log("admin");
-        const userData = await Users.findByPk(inputID);
+        const userData = await Users.findByPk(inputID, {
+          attributes: { exclude: ["password"] },
+        });
         if (userData) {
           return res.status(200).json({ user: userData });
         } else {
           return res.status(404).json({ message: "no such user found" });
         }
       } else {
-        const userData = await Users.findByPk(req.user.id);
+        const userData = await Users.findByPk(req.user.id, {
+          attributes: { exclude: ["password"] },
+        });
         res.status(200).json({ user: userData });
       }
     }
@@ -43,21 +49,28 @@ export const updateUserProfile = async (req, res) => {
     await updateUserProfileSchema.validate(req.body, {
       abortEarly: false,
     });
-    const { first_name, last_name, email, role } = req.body;
+    const { first_name, last_name, email, role, password } = req.body;
     console.log("hello");
     const changes = {
       ...(first_name && { first_name: first_name }),
       ...(last_name && { last_name: last_name }),
       ...(email && { email: email }),
-      ...(role && { role: role }),
     };
-
+    if (password) {
+      return res
+        .status(404)
+        .json({ message: "you cannot change the password" });
+    }
+    if (role) {
+      return res.status(404).json({ message: "you cannot change the role" });
+    }
     let [updated] = await Users.update(changes, {
       where: { id: req.user.id },
     });
-
     if (updated) {
-      let updatedUser = await Users.findByPk(req.user.id);
+      let updatedUser = await Users.findByPk(req.user.id, {
+        attributes: { exclude: ["password"] },
+      });
       return res.status(200).json({
         message: "User updated successfully",
         userdata: updatedUser,
@@ -76,7 +89,9 @@ export const updateUserProfile = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await Users.findAll();
+    const users = await Users.findAll({
+      attributes: { exclude: ["password"] },
+    });
     if (users) {
       return res.status(200).json({ users: users });
     } else {

@@ -3,14 +3,14 @@
 export default {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("orders", {
-      // Unique wishlist ID
+      // Unique order ID
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      // User who added the product
+      // Customer who placed the order
       user_id: {
         type: Sequelize.INTEGER,
         references: {
