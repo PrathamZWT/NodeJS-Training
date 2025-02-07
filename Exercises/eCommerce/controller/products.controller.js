@@ -5,6 +5,7 @@ import { addProductSchema } from "../validators/addProductSchema.js";
 import { updateProductSchema } from "../validators/updateProductSchema.js";
 import fs from "fs";
 import path from "path";
+import { Op } from "sequelize";
 
 // POST Add a new product------------(/api/products)-------------ACCESS[admin]
 export const addNewProduct = async (req, res) => {
@@ -50,7 +51,18 @@ export const addNewProduct = async (req, res) => {
 // GET Get all products---------------(/api/products)-------------------ACCESS[Public]
 export const getAllProducts = async (req, res) => {
   try {
+    let filters = {};
+    let { min_price, max_price, categorie_id } = req.query;
+    if (min_price !== undefined) {
+      filters.price = { [Op.gte]: min_price };
+    }
+    if (max_price !== undefined) {
+      filters.price = { ...filters.price, [Op.lte]: max_price };
+    }
+
+    // res.send(users);
     const result = await Products.findAll({
+      where: filters,
       include: [
         {
           model: Categories,
