@@ -9,26 +9,27 @@ export const addProductToCart = async (req, res) => {
     await addProductToCartSchema.validate(req.body, {
       abortEarly: false,
     });
-    console.log(req.body);
     let product_id = req.body.product_id;
     let user_id = req.user.id;
     let quantity = req.body.quantity;
-    if (!(await Products.findByPk(product_id))) {
+    let productExists = await Products.findByPk(product_id);
+    if (!productExists) {
       return res.status(404).json({ message: "no such product exists" });
     }
     let product = await Products.findByPk(product_id);
     let stock = product.stock;
     if (quantity > stock) {
-      return res.status(404).json({
+      return res.status(400).json({
         message:
           "please decrease the quantity it is more then that we have in stock",
       });
     }
-    console.log("hello");
-
-    if (await Carts.findOne({ where: { user_id, product_id } })) {
+    let productAlreadyInCart = await Carts.findOne({
+      where: { user_id, product_id },
+    });
+    if (productAlreadyInCart) {
       return res
-        .status(200)
+        .status(409)
         .json({ message: "product is already in your cart" });
     } else {
       let added = await Carts.create({ user_id, product_id, quantity });
@@ -37,7 +38,7 @@ export const addProductToCart = async (req, res) => {
           .status(200)
           .json({ message: "product was successfully added to cart" });
       } else {
-        res.status(404).json({ message: "product was not added to cart" });
+        res.status(400).json({ message: "product was not added to cart" });
       }
     }
   } catch (error) {
@@ -64,10 +65,8 @@ export const getCartItems = async (req, res) => {
       attributes: ["product_id"],
     });
 
-    console.log(userCart);
-
     if (!(userCart.length < 1)) {
-      res.status(404).json({
+      res.status(200).json({
         Cart: userCart,
       });
     } else {
@@ -84,24 +83,21 @@ export const getCartItems = async (req, res) => {
 // Remove item from cart
 export const removeItemFromCart = async (req, res) => {
   try {
-    let userId = req.user.id;
-    let productId = req.params.id;
+    let id = req.params.id;
 
-    if (isNaN(productId)) {
-      return res.status(404).json({
-        message: "product_id must be a number",
+    if (isNaN(id)) {
+      return res.status(400).json({
+        message: "cart_id must be a number",
       });
     }
-    console.log("Removing product ID:", productId);
 
     let exists = await Carts.findOne({
-      where: { user_id: userId, product_id: productId },
+      where: { id },
     });
-    console.log("Product exists in cart:", exists);
 
     if (exists) {
       let deleted = await Carts.destroy({
-        where: { user_id: userId, product_id: productId },
+        where: { id },
       });
 
       if (deleted) {
@@ -109,7 +105,7 @@ export const removeItemFromCart = async (req, res) => {
           message: "Product was successfully removed from cart",
         });
       } else {
-        res.status(404).json({
+        res.status(400).json({
           message: "The product was not removed from your cart",
         });
       }

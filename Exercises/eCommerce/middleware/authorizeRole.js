@@ -8,8 +8,6 @@ export const authorizeRole = (...allowedRoles) => {
       const jwttoken = token.split(" ")[1];
       const decoded = jwt.verify(jwttoken, process.env.JWT_SECRET_KEY);
 
-      console.log(decoded);
-
       req.user = decoded;
       if (!allowedRoles.includes(req.user.role)) {
         return res.status(403).json({

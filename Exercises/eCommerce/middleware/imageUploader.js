@@ -18,7 +18,6 @@ const fileFilter = (req, file, cb) => {
   ) {
     fileTypeValid = true;
     cb(null, true);
-    console.log(file);
   } else {
     cb(
       new Error("Invalid file type, only PNG, JPEG and JPG is allowed!"),
@@ -28,12 +27,11 @@ const fileFilter = (req, file, cb) => {
   }
 };
 const upload = multer({ storage: storage, fileFilter }).single("product-image");
-console.log(upload);
 export const fileUploadFilter = (req, res, next) => {
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
       if (err.code === "LIMIT_UNEXPECTED_FILE") {
-        return res.status(404).json({
+        return res.status(400).json({
           message: "Only one file is allowed. Please upload a single file.",
         });
       }
@@ -49,7 +47,7 @@ export const fileUploadFilter = (req, res, next) => {
       const fileSizeInBytes = req.file.size;
       const maxFileSizeInBytes = 5 * 1024 * 1024;
       if (fileSizeInBytes > maxFileSizeInBytes) {
-        return res.status(404).json({
+        return res.status(400).json({
           message: "File size exceeds 5 MB. Please upload a smaller file.",
         });
       }

@@ -6,21 +6,19 @@ export const addProductToWishlist = async (req, res) => {
   try {
     let product_id = req.body.product_id;
     let user_id = req.user.id;
-    console.log(user_id);
-    console.log(product_id);
 
     if (isNaN(product_id)) {
-      return res.status(404).json({ message: "product_id must be a number" });
+      return res.status(400).json({ message: "product_id must be a number" });
     }
-    if (await Products.findByPk(product_id)) {
+    let productExists = await Products.findByPk(product_id);
+    if (productExists) {
       let alreadyExists = await Wishlist.findOne({
         where: { user_id, product_id },
       });
-      console.log(alreadyExists);
 
       if (alreadyExists) {
         return res
-          .status(404)
+          .status(409)
           .json({ message: "product is alredy in your Wish List" });
       } else {
         let result = Wishlist.create({ user_id, product_id });
@@ -30,7 +28,7 @@ export const addProductToWishlist = async (req, res) => {
             .json({ message: "product successfully added to the Wish List" });
         } else {
           return res
-            .status(404)
+            .status(400)
             .json({ message: "product was not added to the Wish List" });
         }
       }
@@ -55,8 +53,6 @@ export const getWishlist = async (req, res) => {
         message: "Wishlist is empty.",
       });
     }
-
-    console.log(wishListExists.dataValues);
 
     let list = await Wishlist.findAll({
       where: { user_id },
@@ -90,13 +86,12 @@ export const removeItemFromWishlist = async (req, res) => {
     let user_id = req.user.id;
     let product_id = req.params.id;
     if (isNaN(product_id)) {
-      return res.status(404).json({ message: "product_id must be a number" });
+      return res.status(400).json({ message: "product_id must be a number" });
     }
 
     let exists = await Wishlist.findOne({
       where: { user_id: user_id, product_id: product_id },
     });
-    console.log("Product exists in cart:", exists);
 
     if (exists) {
       let deleted = await Wishlist.destroy({
@@ -108,7 +103,7 @@ export const removeItemFromWishlist = async (req, res) => {
           message: "Product was successfully removed from your wishlist",
         });
       } else {
-        res.status(404).json({
+        res.status(400).json({
           message: "The product was not removed from your wishlist",
         });
       }

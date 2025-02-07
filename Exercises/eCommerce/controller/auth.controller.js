@@ -13,14 +13,14 @@ export const register = async (req, res) => {
     });
     const { first_name, last_name, email, password, role } = req.body;
     try {
-      if (await Users.findOne({ where: { email } })) {
-        return res.status(404).json({ message: "email is already registered" });
+      let emailExists = await Users.findOne({ where: { email } });
+      if (emailExists) {
+        return res.status(409).json({ message: "email is already registered" });
       }
-
       await Users.create({ first_name, last_name, email, password, role });
       res.status(201).json("user created successfully");
     } catch (error) {
-      res.status(404).json({ message: "user was not created.", error });
+      res.status(400).json({ message: "user was not created.", error });
     }
   } catch (error) {
     return res.status(404).json({
@@ -42,7 +42,7 @@ export const login = async (req, res) => {
       });
       if (!validateUser) {
         return res
-          .status(402)
+          .status(401)
           .json({ success: false, message: "incorrect email or password" });
       } else {
         const validatePassword = bycrypt.compareSync(
@@ -51,7 +51,7 @@ export const login = async (req, res) => {
         );
         if (!validatePassword) {
           return res
-            .status(402)
+            .status(401)
             .json({ success: false, message: "incorrect email or password" });
         } else {
           const token = generateToken(validateUser.id, validateUser.role);

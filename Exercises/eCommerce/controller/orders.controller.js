@@ -31,7 +31,7 @@ export const placeOrder = async (req, res) => {
     }
     if (errorQuantity) {
       return res
-        .status(404)
+        .status(400)
         .json({ message: "stock is short for :", outOfStockList });
     }
     for (let product of cart) {
@@ -41,54 +41,54 @@ export const placeOrder = async (req, res) => {
       let stock =
         product.dataValues.Product.dataValues.stock - product.quantity;
       let stockUpdated = await Products.update(
-        { stock }, // shorthand for { stock: stock }
+        { stock },
         { where: { id: product.dataValues.Product.id } }
       );
-
-      if (stockUpdated[0] === 0) {
-        console.log(`Stock update failed for product ID: ${product.id}`);
-      } else {
-        console.log(`Stock updated successfully for product ID: ${product.id}`);
-      }
     }
     if (products_id.length < 1) {
       return res.status(404).json({ message: "Your Cart is Empty" });
     }
 
-    console.log("Total Price:", total_price);
-
     let created = await Orders.create({ user_id, total_price });
 
     if (created) {
-      console.log("Order Created Successfully");
-
       let order_details = await Orders.findOne({
         where: { user_id },
         order: [["id", "DESC"]],
       });
       let order_id = order_details.id;
-
+      let orderItems = [];
       for (let product of cart) {
         let price = product.dataValues.Product.dataValues.price;
         let quantity = product.quantity;
         let product_id = product.dataValues.Product.id;
-        console.log("hello");
-        await Order_Items.create({
+        orderItems.push({
           order_id,
           product_id,
           quantity,
           price,
         });
       }
-      await Carts.destroy({ where: { user_id } });
-      return res.status(200).json({ message: "Order Placed Successfully" });
+      const orderItemData = await Order_Items.bulkCreate(orderItems);
+      if (orderItemData) {
+        await Carts.destroy({ where: { user_id } });
+        return res.status(200).json({
+          message: "order was placed successfully",
+          order_Items: orderItems,
+        });
+      } else {
+        return res.status(400).json({
+          message: "order was not placed",
+          order_Items: orderItems,
+        });
+      }
     } else {
       console.log("Order Creation Failed");
-      return res.status(500).json({ message: "Order was not placed" });
+      return res.status(400).json({ message: "Order was not placed" });
     }
   } catch (error) {
     console.error("Error:", error);
-    return res.status(500).json({
+    return res.status(404).json({
       error: error.errors || error.message,
     });
   }
@@ -103,6 +103,7 @@ export const getOrderHistory = async (req, res) => {
         {
           model: Order_Items,
           required: true,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
           include: [
             {
               model: Products,
@@ -114,13 +115,13 @@ export const getOrderHistory = async (req, res) => {
       ],
     });
     if (orderHistory) {
-      res.status(200).json({ orderhistory: orderHistory });
+      return res.status(200).json({ orderhistory: orderHistory });
     } else {
-      res.status(404).json({ message: "orderHistory was not fetched" });
+      return res.status(400).json({ message: "orderHistory was not fetched" });
     }
   } catch (error) {
     console.error("Error:", error);
-    return res.status(500).json({
+    return res.status(404).json({
       error: error.errors || error.message,
     });
   }
@@ -132,10 +133,12 @@ export const getOrderDetails = async (req, res) => {
     let user_id = req.user.id;
     let orderDetails = await Orders.findAll({
       where: { id, user_id },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
       include: [
         {
           model: Order_Items,
           required: true,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
           include: [
             {
               model: Products,
@@ -173,7 +176,7 @@ export const updateOrderStatus = async (req, res) => {
         order: await Orders.findByPk(id),
       });
     } else {
-      res.status(404).json({ message: "status was not updated" });
+      res.status(400).json({ message: "status was not updated" });
     }
   } catch (error) {
     console.error("Error:", error);

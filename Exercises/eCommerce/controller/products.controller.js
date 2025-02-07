@@ -10,12 +10,9 @@ import { Op } from "sequelize";
 // POST Add a new product------------(/api/products)-------------ACCESS[admin]
 export const addNewProduct = async (req, res) => {
   try {
-    console.log("hello");
     await addProductSchema.validate(req.body, {
       abortEarly: false,
     });
-    req.body;
-    console.log(req.body);
 
     let { name, description, price, stock, category_id } = req.body;
     let image_url;
@@ -24,7 +21,8 @@ export const addNewProduct = async (req, res) => {
     } else {
       image_url = req.file.path;
     }
-    if (await Categories.findByPk(category_id)) {
+    let categoryExists = await Categories.findByPk(category_id);
+    if (categoryExists) {
       const result = await Products.create({
         name,
         description,
@@ -34,9 +32,9 @@ export const addNewProduct = async (req, res) => {
         image_url,
       });
       if (result) {
-        res.status(200).json({ message: " product was added successfully" });
+        res.status(201).json({ message: " product was added successfully" });
       } else {
-        res.status(404).json({ message: " product was not added" });
+        res.status(400).json({ message: " product was not added" });
       }
     } else {
       res.status(404).json({ message: " no such category exists" });
@@ -55,24 +53,24 @@ export const getAllProducts = async (req, res) => {
     let { min_price, max_price, categorie_id } = req.query;
     if (min_price !== undefined) {
       if (isNaN(min_price)) {
-        return res.status(404).json({ message: "price must be a number" });
+        return res.status(400).json({ message: "price must be a number" });
       }
       filters.price = { [Op.gte]: min_price };
     }
     if (max_price !== undefined) {
       if (isNaN(max_price)) {
-        return res.status(404).json({ message: "price must be a number" });
+        return res.status(400).json({ message: "price must be a number" });
       }
       filters.price = { ...filters.price, [Op.lte]: max_price };
     }
-
-    // res.send(users);
     const result = await Products.findAll({
       where: filters,
+      attributes: { exclude: ["createdAt", "updatedAt"] },
       include: [
         {
           model: Categories,
           required: true,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
         },
       ],
     });
@@ -94,10 +92,12 @@ export const getAllProducts = async (req, res) => {
 export const getProductDetail = async (req, res) => {
   try {
     const result = await Products.findByPk(req.params.id, {
+      attributes: { exclude: ["createdAt", "updatedAt"] },
       include: [
         {
           model: Categories,
           required: true,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
         },
       ],
     });
@@ -121,7 +121,6 @@ export const updateProduct = async (req, res) => {
       abortEarly: false,
     });
     let { name, description, price, stock, category_id, image_url } = req.body;
-    console.log(req.body);
 
     let id = req.params.id;
     const changes = {
@@ -137,19 +136,13 @@ export const updateProduct = async (req, res) => {
     if (product) {
       if (req.file) {
         let image = product.image_url;
-        console.log("Image Path:", image);
 
         if (image) {
           const fileName = path.basename(image);
           const absolutePath = path.join("D:/NodeJS/products", fileName);
           if (fs.existsSync(absolutePath)) {
             fs.unlinkSync(absolutePath);
-            console.log("File deleted successfully:", fileName);
-          } else {
-            console.log("File not found:", absolutePath);
           }
-        } else {
-          console.log("No image associated with the product.");
         }
       }
 
@@ -164,13 +157,15 @@ export const updateProduct = async (req, res) => {
       });
 
       if (updated) {
-        let updatedUser = await Products.findByPk(req.params.id);
+        let updatedUser = await Products.findByPk(req.params.id, {
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+        });
         return res.status(200).json({
           message: "product updated successfully",
           userdata: updatedUser,
         });
       } else {
-        return res.status(404).json({
+        return res.status(400).json({
           message: "product was not updated",
         });
       }
@@ -189,11 +184,9 @@ export const updateProduct = async (req, res) => {
 export const DeleteProduct = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log("Product ID:", id);
 
     // Find the product
     let product = await Products.findOne({ where: { id } });
-    console.log("Product Data:", product);
 
     if (!product) {
       return res.status(404).json({
@@ -202,7 +195,6 @@ export const DeleteProduct = async (req, res) => {
     }
 
     let image = product.image_url;
-    console.log("Image Path:", image);
 
     if (image) {
       const fileName = path.basename(image);
@@ -213,12 +205,7 @@ export const DeleteProduct = async (req, res) => {
       // Check if file exists before deleting
       if (fs.existsSync(absolutePath)) {
         fs.unlinkSync(absolutePath);
-        console.log("File deleted successfully:", fileName);
-      } else {
-        console.log("File not found:", absolutePath);
       }
-    } else {
-      console.log("No image associated with the product.");
     }
 
     // Delete product from database
@@ -227,7 +214,7 @@ export const DeleteProduct = async (req, res) => {
     if (deleted) {
       return res.status(200).json({ message: "Product deleted successfully" });
     } else {
-      return res.status(404).json({ message: "Product could not be deleted" });
+      return res.status(404).json({ message: "Product was not be deleted" });
     }
   } catch (error) {
     console.error("Error deleting product:", error);

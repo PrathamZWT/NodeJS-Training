@@ -11,14 +11,13 @@ export const createNewCategories = async (req, res) => {
 
     const exists = await Categories.findOne({ where: { name } });
     if (exists) {
-      res.status(404).json({ message: "!!! CATEGORY ALREADY EXISTS !!!" });
+      res.status(409).json({ message: "!!! CATEGORY ALREADY EXISTS !!!" });
     } else {
-      console.log(name);
       const result = await Categories.create({ name });
       if (result) {
-        res.status(200).json({ message: "category was added successfully" });
+        res.status(201).json({ message: "category was added successfully" });
       } else {
-        res.status(404).json({ message: "!!! category was not added !!!" });
+        res.status(400).json({ message: "!!! category was not added !!!" });
       }
     }
   } catch (error) {
@@ -31,7 +30,9 @@ export const createNewCategories = async (req, res) => {
 // GET Get all categories------------(/api/categories)-------------ACCESS(Public)
 export const getAllCategories = async (req, res) => {
   try {
-    const allcategories = await Categories.findAll();
+    const allcategories = await Categories.findAll({
+      attributes: ["id", "name"],
+    });
 
     if (allcategories) {
       res.status(200).json({ data: allcategories });

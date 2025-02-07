@@ -15,7 +15,6 @@ import wishlistRouter from "./routes/wishlistRouter.js";
 import ordersRouter from "./routes/orders.route.js";
 import multer from "multer";
 const upload = multer({ dest: "products/" });
-console.log(users);
 const PORT = process.env.APP_PORT;
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
