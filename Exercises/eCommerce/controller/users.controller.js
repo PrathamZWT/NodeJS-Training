@@ -8,8 +8,8 @@ export const getUserProfile = async (req, res) => {
   try {
     console.log(req.user);
 
-    if (req.user.role === "user") {
-      console.log("user");
+    if (req.user.role === "customer") {
+      console.log("customer");
       const userData = await Users.findByPk(req.user.id, {
         attributes: { exclude: ["password"] },
       });
@@ -89,13 +89,28 @@ export const updateUserProfile = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await Users.findAll({
-      attributes: { exclude: ["password"] },
-    });
-    if (users) {
-      return res.status(200).json({ users: users });
+    let role = req.query.role;
+    console.log(role);
+
+    if (role) {
+      const users = await Users.findAll({
+        where: { role },
+        attributes: { exclude: ["password"] },
+      });
+      if (users) {
+        return res.status(200).json({ users: users });
+      } else {
+        res.status(404).json({ message: "no user in users table" });
+      }
     } else {
-      res.status(404).json({ message: "no user in users table" });
+      const users = await Users.findAll({
+        attributes: { exclude: ["password"] },
+      });
+      if (users) {
+        return res.status(200).json({ users: users });
+      } else {
+        res.status(404).json({ message: "no user in users table" });
+      }
     }
   } catch (error) {
     return res.status(404).json({
