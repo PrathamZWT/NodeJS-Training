@@ -83,19 +83,16 @@ export const getWishlist = async (req, res) => {
 // Remove item from wishlist
 export const removeItemFromWishlist = async (req, res) => {
   try {
-    let user_id = req.user.id;
-    let product_id = req.params.id;
-    if (isNaN(product_id)) {
-      return res.status(400).json({ message: "product_id must be a number" });
+    let id = req.params.id;
+    if (isNaN(id)) {
+      return res.status(400).json({ message: "id must be a number" });
     }
 
-    let exists = await Wishlist.findOne({
-      where: { user_id: user_id, product_id: product_id },
-    });
+    let exists = await Wishlist.findByPk(id);
 
     if (exists) {
       let deleted = await Wishlist.destroy({
-        where: { user_id: user_id, product_id: product_id },
+        where: { id },
       });
 
       if (deleted) {
