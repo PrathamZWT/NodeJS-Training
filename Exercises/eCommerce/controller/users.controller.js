@@ -2,6 +2,7 @@ import Users from "../models/users.model.js";
 import bycrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { updateUserProfileSchema } from "../validators/updateUserProfile.js";
+import { getAllUsersSchema } from "../validators/getAllUsersSchema.js";
 
 // Get logged-in user profile----------(/api/users/profile)-----------Access[Customer, Admin]
 export const getUserProfile = async (req, res) => {
@@ -91,6 +92,12 @@ export const getAllUsers = async (req, res) => {
   try {
     let role = req.query.role;
     console.log(role);
+    await getAllUsersSchema.validate(
+      { role },
+      {
+        abortEarly: false,
+      }
+    );
 
     if (role) {
       const users = await Users.findAll({

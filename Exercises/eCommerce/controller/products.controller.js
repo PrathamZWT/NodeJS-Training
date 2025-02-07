@@ -54,9 +54,15 @@ export const getAllProducts = async (req, res) => {
     let filters = {};
     let { min_price, max_price, categorie_id } = req.query;
     if (min_price !== undefined) {
+      if (isNaN(min_price)) {
+        return res.status(404).json({ message: "price must be a number" });
+      }
       filters.price = { [Op.gte]: min_price };
     }
     if (max_price !== undefined) {
+      if (isNaN(max_price)) {
+        return res.status(404).json({ message: "price must be a number" });
+      }
       filters.price = { ...filters.price, [Op.lte]: max_price };
     }
 
