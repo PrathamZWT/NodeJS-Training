@@ -22,5 +22,5 @@ export const registerSchema = Yup.object({
       ["Admin", "Customer", "customer", "admin"],
       "Role must be either 'Admin' or 'User'"
     )
-    .required("Role is required"),
+    .optional(),
 });

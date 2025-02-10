@@ -55,11 +55,14 @@ export const login = async (req, res) => {
             .json({ success: false, message: "incorrect email or password" });
         } else {
           const token = generateToken(validateUser.id, validateUser.role);
-          res.status(200).json({
-            success: true,
-            message: `Login successful `,
-            token,
-          });
+          res
+            .cookie("access_token", token, { httpOnly: true })
+            .status(200)
+            .json({
+              success: true,
+              message: `Login successful `,
+              token,
+            });
         }
       }
     } catch (error) {}

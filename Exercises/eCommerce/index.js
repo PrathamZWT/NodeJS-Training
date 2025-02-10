@@ -14,7 +14,18 @@ import cartRouter from "./routes/cart.route.js";
 import wishlistRouter from "./routes/wishlistRouter.js";
 import ordersRouter from "./routes/orders.route.js";
 import multer from "multer";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 const upload = multer({ dest: "products/" });
+const corsOptions = {
+  origin: "http://localhost:5173", // Allow requests from this origin
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors(corsOptions));
 const PORT = process.env.APP_PORT;
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
