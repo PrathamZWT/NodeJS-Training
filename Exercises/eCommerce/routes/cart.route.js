@@ -8,6 +8,7 @@ import {
 
 const router = express.Router();
 router.post("/", authorizeRole("customer"), addProductToCart);
+router.post("/update", authorizeRole("customer"), updateProductToCart);
 router.get("/", authorizeRole("customer"), getCartItems);
 router.delete("/:id", authorizeRole("customer"), removeItemFromCart);
 

@@ -13,6 +13,9 @@ const Categories = connection.define(
       allowNull: false,
       unique: true,
     },
+    image_url: {
+      type: DataTypes.STRING,
+    },
   },
   {
     indexes: [

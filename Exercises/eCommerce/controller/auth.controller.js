@@ -1,5 +1,5 @@
 import Users from "../models/users.model.js";
-import bycrypt from "bcrypt";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { registerSchema } from "../validators/registerSchema.js";
 import { generateToken } from "../utilities/jwt_token.js";
@@ -35,40 +35,47 @@ export const login = async (req, res) => {
     await loginSchema.validate(req.body, {
       abortEarly: false,
     });
+
     const { email, password } = req.body;
-    try {
-      const validateUser = await Users.findOne({
-        where: { email },
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required.",
       });
-      if (!validateUser) {
-        return res
-          .status(401)
-          .json({ success: false, message: "incorrect email or password" });
-      } else {
-        const validatePassword = bycrypt.compareSync(
-          password,
-          validateUser.password
-        );
-        if (!validatePassword) {
-          return res
-            .status(401)
-            .json({ success: false, message: "incorrect email or password" });
-        } else {
-          const token = generateToken(validateUser.id, validateUser.role);
-          res
-            .cookie("access_token", token, { httpOnly: true })
-            .status(200)
-            .json({
-              success: true,
-              message: `Login successful `,
-              token,
-            });
-        }
-      }
-    } catch (error) {}
+    }
+    const validateUser = await Users.findOne({
+      where: { email },
+    });
+    if (!validateUser) {
+      return res.status(401).json({
+        success: false,
+        message: "Incorrect email or password",
+      });
+    }
+    const validatePassword = bcrypt.compareSync(
+      password,
+      validateUser.password
+    );
+    if (!validatePassword) {
+      return res.status(401).json({
+        success: false,
+        message: "Incorrect email or password",
+      });
+    }
+    const token = generateToken(validateUser.id, validateUser.role);
+    return res
+      .cookie("access_token", token, { httpOnly: true })
+      .status(200)
+      .json({
+        success: true,
+        message: "Login successful",
+        token,
+      });
   } catch (error) {
-    return res.status(404).json({
-      error: error.errors || error.message,
+    console.error("Error during login process:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error occurred. Please try again later.",
     });
   }
 };

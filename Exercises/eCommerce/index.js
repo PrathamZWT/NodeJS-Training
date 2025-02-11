@@ -16,7 +16,17 @@ import ordersRouter from "./routes/orders.route.js";
 import multer from "multer";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path";
 const upload = multer({ dest: "products/" });
+app.use("/images", express.static(path.join("D:", "NodeJs")));
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 const corsOptions = {
   origin: "http://localhost:5173", // Allow requests from this origin
   methods: ["GET", "POST", "PUT", "DELETE"],

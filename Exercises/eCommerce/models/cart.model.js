@@ -29,6 +29,7 @@ const Carts = connection.define("Carts", {
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    defaultValue: 1,
   },
 });
 

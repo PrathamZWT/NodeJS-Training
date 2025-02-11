@@ -58,11 +58,11 @@ export const getCartItems = async (req, res) => {
       include: [
         {
           model: Products,
-          attributes: ["id", "name", "description", "price"],
+          attributes: ["id", "name", "description", "price", "image_url"],
           required: true,
         },
       ],
-      attributes: ["product_id"],
+      attributes: ["id", "product_id", "quantity"],
     });
 
     if (!(userCart.length < 1)) {
@@ -119,4 +119,8 @@ export const removeItemFromCart = async (req, res) => {
       error: error.errors || error.message,
     });
   }
+};
+
+export const updateProductToCart = async (req, res) => {
+  let { id, quantity } = req;
 };

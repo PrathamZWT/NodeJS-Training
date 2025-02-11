@@ -15,6 +15,9 @@ export default {
         type: Sequelize.STRING,
         unique: true,
       },
+      image_url: {
+        type: Sequelize.STRING,
+      },
       // Category creation timestamp
       createdAt: {
         allowNull: false,

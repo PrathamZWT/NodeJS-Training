@@ -5,6 +5,8 @@ export const authorizeRole = (...allowedRoles) => {
   return (req, res, next) => {
     try {
       const token = req.headers.authorization;
+      // console.log(token);
+
       const jwttoken = token.split(" ")[1];
       const decoded = jwt.verify(jwttoken, process.env.JWT_SECRET_KEY);
 
