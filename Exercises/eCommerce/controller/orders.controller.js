@@ -107,7 +107,38 @@ export const getOrderHistory = async (req, res) => {
           include: [
             {
               model: Products,
-              attributes: ["id", "name", "description", "price"],
+              attributes: ["id", "name", "description", "price", "image_url"],
+              required: true,
+            },
+          ],
+        },
+      ],
+    });
+    if (orderHistory) {
+      return res.status(200).json({ orderhistory: orderHistory });
+    } else {
+      return res.status(400).json({ message: "orderHistory was not fetched" });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(404).json({
+      error: error.errors || error.message,
+    });
+  }
+};
+export const getallOrderHistory = async (req, res) => {
+  try {
+    let user_id = req.user.id;
+    let orderHistory = await Orders.findAll({
+      include: [
+        {
+          model: Order_Items,
+          required: true,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+          include: [
+            {
+              model: Products,
+              attributes: ["id", "name", "description", "price", "image_url"],
               required: true,
             },
           ],

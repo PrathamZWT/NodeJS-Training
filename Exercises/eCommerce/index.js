@@ -23,19 +23,13 @@ app.use("/images", express.static(path.join("D:", "NodeJs")));
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-const corsOptions = {
-  origin: "http://localhost:5173", // Allow requests from this origin
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
+app.options("*", cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
 const PORT = process.env.APP_PORT;
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);

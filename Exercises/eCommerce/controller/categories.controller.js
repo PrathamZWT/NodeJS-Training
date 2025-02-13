@@ -36,7 +36,7 @@ export const createNewCategories = async (req, res) => {
 export const getAllCategories = async (req, res) => {
   try {
     const allcategories = await Categories.findAll({
-      attributes: ["id", "name", "image_url"],
+      attributes: ["id", "name", "image_url", "createdAt"],
     });
 
     if (allcategories) {

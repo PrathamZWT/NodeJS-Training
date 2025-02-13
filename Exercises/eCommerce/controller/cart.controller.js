@@ -58,7 +58,14 @@ export const getCartItems = async (req, res) => {
       include: [
         {
           model: Products,
-          attributes: ["id", "name", "description", "price", "image_url"],
+          attributes: [
+            "id",
+            "name",
+            "description",
+            "price",
+            "image_url",
+            "stock",
+          ],
           required: true,
         },
       ],
@@ -122,5 +129,49 @@ export const removeItemFromCart = async (req, res) => {
 };
 
 export const updateProductToCart = async (req, res) => {
-  let { id, quantity } = req;
+  try {
+    let { id, quantity } = req.body;
+    if (isNaN(quantity)) {
+      return res
+        .status(404)
+        .json({ success: false, message: "quantity must be a number" });
+    }
+    if (isNaN(id)) {
+      return res
+        .status(404)
+        .json({ success: false, message: "id must be a number" });
+    }
+    if (quantity < 1) {
+      let deleted = await Carts.destroy({
+        where: { id },
+      });
+
+      if (deleted) {
+        return res.status(200).json({
+          success: true,
+          message: "Product was successfully removed from cart",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: "The product was not removed from your cart",
+        });
+      }
+    }
+    let updated = await Carts.update({ quantity }, { where: { id } });
+    if (updated) {
+      return res
+        .status(200)
+        .json({ success: true, massage: "quantity updated success fully" });
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "quantity was not updated" });
+    }
+  } catch (error) {
+    return res.status(404).json({
+      sucess: false,
+      error: error.errors || error.message,
+    });
+  }
 };

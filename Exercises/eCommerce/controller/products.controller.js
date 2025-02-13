@@ -50,7 +50,7 @@ export const addNewProduct = async (req, res) => {
 export const getAllProducts = async (req, res) => {
   try {
     let filters = {};
-    let { min_price, max_price, categorie_id } = req.query;
+    let { min_price, max_price, id } = req.query;
     if (min_price !== undefined) {
       if (isNaN(min_price)) {
         return res.status(400).json({ message: "price must be a number" });
@@ -62,6 +62,12 @@ export const getAllProducts = async (req, res) => {
         return res.status(400).json({ message: "price must be a number" });
       }
       filters.price = { ...filters.price, [Op.lte]: max_price };
+    }
+    if (id !== undefined) {
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "id must be a number" });
+      }
+      filters.category_id = id;
     }
     const result = await Products.findAll({
       where: filters,
@@ -117,20 +123,31 @@ export const getProductDetail = async (req, res) => {
 // Update a product
 export const updateProduct = async (req, res) => {
   try {
-    await updateProductSchema.validate(req.body, {
-      abortEarly: false,
-    });
     let { name, description, price, stock, category_id, image_url } = req.body;
-
-    let id = req.params.id;
+    if (isNaN(category_id)) {
+      category_id = null;
+    }
+    if (isNaN(stock)) {
+      category_id = null;
+    }
+    if (isNaN(price)) {
+      category_id = null;
+    }
+    console.log("hello", req.body);
     const changes = {
       ...(name && { name: name }),
       ...(description && { description: description }),
-      ...(price && { price: price }),
-      ...(stock && { stock: stock }),
-      ...(category_id && { category_id: category_id }),
+      ...(price && { price: Number(price) }),
+      ...(stock && { stock: Number(stock) }),
+      ...(category_id && { category_id: Number(category_id) }),
       ...(image_url && { image_url: image_url }),
     };
+
+    await updateProductSchema.validate(changes, {
+      abortEarly: false,
+    });
+
+    let id = req.params.id;
 
     let product = await Products.findOne({ where: { id } });
     if (product) {
@@ -145,11 +162,12 @@ export const updateProduct = async (req, res) => {
           }
         }
       }
-
-      if (category_id) {
-        let categoriesExists = await Categories.findByPk(category_id);
-        if (!categoriesExists) {
-          res.status(404).json({ message: " no such category exists" });
+      if (!isNaN(category_id)) {
+        if (category_id) {
+          let categoriesExists = await Categories.findByPk(category_id);
+          if (!categoriesExists) {
+            res.status(404).json({ message: " no such category exists" });
+          }
         }
       }
       let [updated] = await Products.update(changes, {

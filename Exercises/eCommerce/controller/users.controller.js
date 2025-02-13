@@ -96,7 +96,7 @@ export const getAllUsers = async (req, res) => {
     if (role) {
       const users = await Users.findAll({
         where: { role },
-        attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+        attributes: { exclude: ["password", "updatedAt"] },
       });
       if (users) {
         return res.status(200).json({ users: users });
@@ -105,7 +105,7 @@ export const getAllUsers = async (req, res) => {
       }
     } else {
       const users = await Users.findAll({
-        attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+        attributes: { exclude: ["password", "updatedAt"] },
       });
       if (users) {
         return res.status(200).json({ users: users });
