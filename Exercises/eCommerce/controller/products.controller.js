@@ -135,7 +135,6 @@ export const updateProduct = async (req, res) => {
     if (isNaN(price)) {
       category_id = null;
     }
-    console.log("hello", req.body);
     const changes = {
       ...(name && { name: name }),
       ...(description && { description: description }),
