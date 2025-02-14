@@ -128,7 +128,6 @@ export const getOrderHistory = async (req, res) => {
 };
 export const getallOrderHistory = async (req, res) => {
   try {
-    let user_id = req.user.id;
     let orderHistory = await Orders.findAll({
       include: [
         {

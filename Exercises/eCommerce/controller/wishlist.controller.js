@@ -59,11 +59,11 @@ export const getWishlist = async (req, res) => {
       include: [
         {
           model: Products,
-          attributes: ["id", "name", "description", "price"],
+          attributes: ["id", "name", "description", "price", "image_url"],
           required: true,
         },
       ],
-      attributes: ["product_id"],
+      attributes: ["id", "product_id"],
     });
 
     if (!list || list.length === 0) {
